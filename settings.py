@@ -18,4 +18,3 @@ class Settings:
 		self.bullet_height = 15 # Number of pixels
 		self.bullet_color = (60, 60, 60)
 
-		
