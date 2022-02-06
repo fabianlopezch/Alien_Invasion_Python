@@ -24,6 +24,9 @@ class AlienInvasion:
 		self.bg_color = (230, 230, 230)
 		self.ship = Ship(self) # Make an instance of Ship
 
+		self.bullets = pygame.sprite.Group() # Behaves like a list with 
+											 # some extra functionality
+
 	def run_game(self):
 		""" Start the main loop for the game. """
 
@@ -31,6 +34,8 @@ class AlienInvasion:
 
 			self._check_events()
 			self.ship.update()
+			self.bullets.update() # It calls bullet.update() for each 
+								  # bullet in the group bullets
 			self._update_screen()
 
 	def _check_events(self): # Helper method to isolate the event manager loop
