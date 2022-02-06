@@ -37,6 +37,13 @@ class AlienInvasion:
 			self.ship.update()
 			self.bullets.update() # It calls bullet.update() for each 
 								  # bullet in the group bullets
+
+			# Get rid of bullets that have dissappeared.
+			for bullet in self.bullets.copy():
+				if bullet.rect.bottom <= 0:
+					self.bullets.remove(bullet)
+			print(len(self.bullets))
+
 			self._update_screen()
 
 	def _check_events(self): # Helper method to isolate the event manager loop
