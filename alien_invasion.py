@@ -35,15 +35,7 @@ class AlienInvasion:
 
 			self._check_events()
 			self.ship.update()
-			self.bullets.update() # It calls bullet.update() for each 
-								  # bullet in the group bullets
-
-			# Get rid of bullets that have dissappeared.
-			for bullet in self.bullets.copy():
-				if bullet.rect.bottom <= 0:
-					self.bullets.remove(bullet)
-			#print(len(self.bullets))
-
+			self._update_bullets()
 			self._update_screen()
 
 	def _check_events(self): # Helper method to isolate the event manager loop
@@ -83,7 +75,20 @@ class AlienInvasion:
 		""" Create a new bullet and add it to the bullets group. """
 		if len(self.bullets) < self.settings.bullets_allowed:
 			new_bullet = Bullet(self)
-			self.bullets.add(new_bullet)	
+			self.bullets.add(new_bullet)
+
+	def _update_bullets(self):
+		""" Update position of bullets and get rid of old bullets. """
+
+		# Update bullet position
+		self.bullets.update() # It calls bullet.update() for each 
+							  # bullet in the group bullets
+
+		# Get rid of bullets that have dissappeared.
+		for bullet in self.bullets.copy():
+			if bullet.rect.bottom <= 0:
+				self.bullets.remove(bullet)
+		#print(len(self.bullets))
 
 
 	def _update_screen(self): # Helper method for updating the screen
