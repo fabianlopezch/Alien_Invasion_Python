@@ -138,6 +138,7 @@ class AlienInvasion:
 			for aliens in collisions.values():
 				self.stats.score += self.settings.alien_points * len(aliens) 
 			self.sb.prep_score()
+			self.sb.check_high_score()
 
 	def _create_fleet(self):
 		""" Create the fleet of aliens. """
