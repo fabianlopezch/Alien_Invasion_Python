@@ -9,6 +9,7 @@ from alien import Alien
 from time import sleep
 from game_stats import GameStats
 from button import Button
+from scoreboard import Scoreboard
 
 class AlienInvasion:
 	"""
@@ -28,8 +29,10 @@ class AlienInvasion:
 
 		self.bg_color = (230, 230, 230)
 
-		# Create an instance to store game statistics.
+		# Create an instance to store game statistics,
+		# and create a scoreboard.
 		self.stats = GameStats(self)
+		self.sb = Scoreboard(self)
 
 		self.ship = Ship(self) # Make an instance of Ship
 
@@ -42,6 +45,7 @@ class AlienInvasion:
 
 		# Make the Play button
 		self.play_button = Button(self, "Play")
+
 
 	def run_game(self):
 		""" Start the main loop for the game. """
@@ -226,6 +230,9 @@ class AlienInvasion:
 			bullet.draw_bullet()
 
 		self.aliens.draw(self.screen)
+
+		# Draw the score information.
+		self.sb.show_score()
 
 		# Draw the play button if the game is inactive.
 		if not self.stats.game_active:
