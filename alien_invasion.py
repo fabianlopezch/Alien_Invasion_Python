@@ -134,6 +134,10 @@ class AlienInvasion:
 			self._create_fleet()
 			self.settings.increase_speed()
 
+		if collisions:
+			self.stats.score += self.settings.alien_points
+			self.sb.prep_score()
+
 	def _create_fleet(self):
 		""" Create the fleet of aliens. """
 		# Create an alien and find the number of aliens in a row.
